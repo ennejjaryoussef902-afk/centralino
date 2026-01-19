@@ -1,0 +1,26 @@
+name: Avvia Chiamata Twilio
+on:
+  workflow_dispatch: # Questo ti permette di premere un tasto "Play" dal telefono/PC per chiamare
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice
+        uses: actions/checkout@v2
+
+      - name: Installa Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Installa librerie
+        run: pip install twilio python-dotenv
+
+      - name: Esegui Script
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_NUMBER: ${{ secrets.TWILIO_NUMBER }}
+          MY_PHONE_NUMBER: ${{ secrets.MY_PHONE_NUMBER }}
+        run: python chiama.py

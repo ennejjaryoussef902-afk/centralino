@@ -1,0 +1,12 @@
+# Nascondi il file delle variabili d'ambiente
+.env
+
+# Nascondi le cartelle di Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Nascondi i log di errore
+*.log
